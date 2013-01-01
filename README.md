@@ -12,6 +12,11 @@ Operation：
 
 ./blog
 
+Database:
+============
+mysql
+
+
 View:
 ============
 
