@@ -52,6 +52,7 @@ func (this *MainController) Get() {
 	this.Data["Username"] = ""
 	sess := globalSessions.SessionStart(this.Ctx.ResponseWriter, this.Ctx.Request)
 	username := sess.Get("uname")
+
 	if username != nil {
 		this.Data["Username"] = username
 	}

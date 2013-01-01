@@ -49,4 +49,5 @@ func (this *LoginController) Post() {
 		this.Ctx.Redirect(302, "/")
 	}
 
+	this.Ctx.Redirect(302, "/")
 }

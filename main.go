@@ -11,6 +11,7 @@ func main() {
 	beego.RegisterController("/", &controllers.MainController{})
 	beego.RegisterController("/reg", &controllers.RegController{})
 	beego.RegisterController("/login", &controllers.LoginController{})
+	beego.RegisterController("/logout", &controllers.LogoutController{})
 	beego.RegisterController("/:id([0-9]+)", &controllers.MainController{})
 	beego.RegisterController("/admin/index", &admin.IndexController{})
 	beego.RegisterController("/admin/login", &admin.LoginController{})
