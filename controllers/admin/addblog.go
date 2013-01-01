@@ -46,7 +46,7 @@ func (this *AddBlogController) Post() {
 	data.Title = title
 	data.Content = content
 	//获取系统当前时间
-	now := time.Now().Format("2006-01-02 15:04:05")
+	now := beego.Date(time.Now(), "Y-m-d H:i:s")
 	data.Created = now
 	models.InsertBlogs(data)
 	this.Ctx.Redirect(302, "/admin/index")

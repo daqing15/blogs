@@ -1,0 +1,1 @@
+2013/01/01 22:07:07 [I] [[addblog:  title:我的博客3 content:now := beego.Date(time.Now(), "Y-m-d H:i:s")]]

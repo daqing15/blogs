@@ -53,7 +53,7 @@ func (this *RegController) Post() {
 	fmt.Fprintf(buffer, "%x", md5Password.Sum(nil))
 	newPass := buffer.String()
 
-	now := time.Now().Format("2006-01-02 15:04:05")
+	now := beego.Date(time.Now(), "Y-m-d H:i:s")
 
 	userInfo := models.GetUserInfo(username)
 

@@ -54,7 +54,7 @@ func (this *EditBlogController) Post() {
 	//打印生成日志
 	defer utils.Info("editBlog: ", "id:"+id_str, "title:"+title, "content:"+content)
 	//获取系统当前时间
-	now := time.Now().Format("2006-01-02 15:04:05")
+	now := beego.Date(time.Now(), "Y-m-d H:i:s")
 	blogInfo.Created = now
 	models.UpdateBlogInfo(blogInfo)
 	this.Ctx.Redirect(302, "/admin/index")
