@@ -6,23 +6,13 @@ import (
 	"crypto/md5"
 	"fmt"
 	"github.com/astaxie/beego"
-	"github.com/astaxie/session"
-	_ "github.com/astaxie/session/providers/memory"
 	"io"
 	"regexp"
 	"time"
 )
 
-var globalSessions *session.Manager
-
 type RegController struct {
 	beego.Controller
-}
-
-//然后在init函数中初始化
-func init() {
-	globalSessions, _ = session.NewManager("memory", "gosessionid", 3600)
-	go globalSessions.GC()
 }
 
 func (this *RegController) Get() {
@@ -66,7 +56,7 @@ func (this *RegController) Post() {
 		models.AddUser(users)
 
 		//登录成功设置session
-		sess := globalSessions.SessionStart(this.Ctx.ResponseWriter, this.Ctx.Request)
+		sess := this.StartSession()
 		sess.Set("uid", userInfo.Id)
 		sess.Set("uname", userInfo.Username)
 		this.Ctx.Redirect(302, "/")

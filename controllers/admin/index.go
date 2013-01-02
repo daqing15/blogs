@@ -4,8 +4,6 @@ import (
 	"blog/models"
 	"blog/utils"
 	"github.com/astaxie/beego"
-	"github.com/astaxie/session"
-	_ "github.com/astaxie/session/providers/memory"
 	"strconv"
 )
 
@@ -13,14 +11,8 @@ type IndexController struct {
 	beego.Controller
 }
 
-//然后在init函数中初始化
-func init() {
-	globalSessions, _ = session.NewManager("memory", "gosessionid", 3600)
-	go globalSessions.GC()
-}
-
 func (this *IndexController) Prepare() {
-	sess := globalSessions.SessionStart(this.Ctx.ResponseWriter, this.Ctx.Request)
+	sess := this.StartSession()
 
 	sess_uid := sess.Get("userid")
 	sess_username := sess.Get("username")

@@ -3,18 +3,11 @@ package controllers
 import (
 	"blog/models"
 	"github.com/astaxie/beego"
-	"github.com/astaxie/session"
 	"strconv"
 )
 
 type MainController struct {
 	beego.Controller
-}
-
-//然后在init函数中初始化
-func init() {
-	globalSessions, _ = session.NewManager("memory", "gosessionid", 3600)
-	go globalSessions.GC()
 }
 
 var welcome = `
@@ -50,7 +43,7 @@ func (this *MainController) Get() {
 	}
 
 	this.Data["Username"] = ""
-	sess := globalSessions.SessionStart(this.Ctx.ResponseWriter, this.Ctx.Request)
+	sess := this.StartSession()
 	username := sess.Get("uname")
 
 	if username != nil {

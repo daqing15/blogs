@@ -7,6 +7,8 @@ import (
 )
 
 func main() {
+	//开启全局session
+	beego.SessionOn = true
 	beego.PprofOn = true
 	beego.RegisterController("/", &controllers.MainController{})
 	beego.RegisterController("/reg", &controllers.RegController{})

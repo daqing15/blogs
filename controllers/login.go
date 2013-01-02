@@ -6,20 +6,12 @@ import (
 	"crypto/md5"
 	"fmt"
 	"github.com/astaxie/beego"
-	"github.com/astaxie/session"
-	_ "github.com/astaxie/session/providers/memory"
 	"io"
 	"time"
 )
 
 type LoginController struct {
 	beego.Controller
-}
-
-//然后在init函数中初始化
-func init() {
-	globalSessions, _ = session.NewManager("memory", "gosessionid", 3600)
-	go globalSessions.GC()
 }
 
 func (this *LoginController) Post() {
@@ -42,7 +34,7 @@ func (this *LoginController) Post() {
 		models.UpdateUserInfo(users)
 
 		//登录成功设置session
-		sess := globalSessions.SessionStart(this.Ctx.ResponseWriter, this.Ctx.Request)
+		sess := this.StartSession()
 		sess.Set("uid", userInfo.Id)
 		sess.Set("uname", userInfo.Username)
 
